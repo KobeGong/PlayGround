@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.baidu.rxandroidtaste">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".ObservableActivity"
+            android:label="@string/activity_title_observable_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ImageActivity"
+            android:label="@string/activity_title_image_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ImageDetailActivity"
+            android:label="@string/activity_title_image_detail_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DrawActivity"
+            android:label="@string/activity_title_draw_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ListActivity"
+            android:label="@string/activity_title_list_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LaunchActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".DrawableActivity"
+            android:label="@string/activity_title_drawable_activity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".NestedScrollDemo"
+            android:label="@string/activity_title_nested_scroll_demo">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FacebookApiActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="www.baidu.com"
+                    android:pathPrefix="/gizmos"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".NotificationManageActivity"
+            android:label="@string/activity_title_notification_manager_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PackageViewerActivity"
+            android:label="@string/activity_title_package_viewer_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".SettingQueryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".NLActivity"
+            android:label="@string/activity_title_nl_activity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".NLService"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".TransparentActivity"
+            android:theme="@style/AppTheme.Transparent" />
+    </application>
+
+</manifest>

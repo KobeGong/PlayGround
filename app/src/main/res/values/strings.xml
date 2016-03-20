@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PlayGround</string>
+    <string name="activity_title_image_activity">ImageActivity</string>
+    <string name="activity_title_image_detail_activity">ImageDetailActivity</string>
+    <string name="activity_title_draw_activity">DrawActivity</string>
+    <string name="activity_title_list_activity">ListActivity</string>
+    <string name="activity_title_observable_activity">ObservableActivity</string>
+    <string name="activity_title_drawable_activity">DrawableActivity</string>
+    <string name="activity_title_nested_scroll_demo">NestedScrollDemo</string>
+    <string name="activity_title_notification_manager_activity">NotificationManagerActivity</string>
+    <string name="activity_title_package_viewer_activity">PackageViewerActivity</string>
+    <string name="activity_title_nl_activity">NLActivity</string>
+</resources>

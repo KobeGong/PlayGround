@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#ffeaebf2"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:background="#f559be32"
+        android:id="@+id/settings_set"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:text="button"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+    <RelativeLayout
+        android:background="#FFFFFF"
+        android:id="@+id/settings_title"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent">
+
+        <ImageButton
+            android:background="#EEE000"
+            android:id="@+id/btn_back_main"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:scaleType="center"
+            android:src="@drawable/battery_border" />
+
+        <TextView
+            android:gravity="top|bottom|left|right|center_vertical|fill_vertical|center_horizontal|fill_horizontal|center|fill|start|end"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-10dp"
+            android:layout_toRightOf="@+id/btn_back_main"
+            android:layout_width="wrap_content"
+            android:shadowColor="#39000000"
+            android:shadowDx="0.0"
+            android:shadowDy="6.0"
+            android:shadowRadius="6.0"
+            android:text="setting title" />
+
+        <TextView
+            android:id="@+id/tv_feedback"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:paddingBottom="10dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:shadowColor="#39000000"
+            android:shadowDx="0.0"
+            android:shadowDy="6.0"
+            android:shadowRadius="6.0"
+            android:text="notification_disturb_feedback" />
+    </RelativeLayout>
+
+    <ListView
+        android:background="#106000bb"
+        android:cacheColorHint="#106000dd"
+        android:divider="#106000dd"
+        android:dividerHeight="0dp"
+        android:id="@+id/lv_notification_disturb"
+        android:layout_above="@+id/settings_set"
+        android:layout_below="@+id/settings_title"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:listSelector="#106000dd" />
+
+    <com.cleanmaster.ui.android.market.MarketLoadingView
+        android:id="@+id/waiting_progress"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:paddingTop="15dp"
+        android:visibility="gone" />
+</RelativeLayout>
