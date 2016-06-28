@@ -1,27 +1,27 @@
 package com.baidu.rxandroidtaste;
 
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -43,6 +43,21 @@ public class LaunchActivity extends AppCompatActivity implements
         mAdapter = new ActivityAdapter(this);
         mListView.setAdapter(mAdapter);
         getSupportLoaderManager().initLoader(LOADER_ACTIVITIES, null, this);
+
+        registerReceiver();
+    }
+
+    private void registerReceiver() {
+        IntentFilter filter = new IntentFilter();
+        filter.addAction(Intent.ACTION_PACKAGE_RESTARTED);
+        filter.addAction(Intent.ACTION_PACKAGE_CHANGED);
+        registerReceiver(receiver, filter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(receiver);
     }
 
     @OnItemClick(R.id.list)
@@ -134,4 +149,19 @@ public class LaunchActivity extends AppCompatActivity implements
             return view;
         }
     }
+
+    private BroadcastReceiver receiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            String packageName = intent.getStringExtra("package");
+            String content = "action: " + action + ", package: " + packageName;;
+            if (action.equals(Intent.ACTION_PACKAGE_CHANGED)) {
+                ArrayList<String> list = intent.getStringArrayListExtra(Intent.EXTRA_CHANGED_COMPONENT_NAME_LIST);
+                content = content + ", list: " + list.toString();
+                Toast.makeText(context, content, Toast.LENGTH_SHORT).show();
+            }
+            Toast.makeText(context, content, Toast.LENGTH_SHORT).show();
+        }
+    };
 }

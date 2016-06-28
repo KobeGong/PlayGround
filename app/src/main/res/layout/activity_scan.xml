@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FF0E86FF"
+    tools:context="com.baidu.rxandroidtaste.scan.ScanActivity">
+    <com.baidu.rxandroidtaste.scan.WifiView
+        android:id="@+id/wifiView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+    <com.baidu.rxandroidtaste.scan.SweepView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</RelativeLayout>

@@ -10,4 +10,9 @@
     <string name="activity_title_notification_manager_activity">NotificationManagerActivity</string>
     <string name="activity_title_package_viewer_activity">PackageViewerActivity</string>
     <string name="activity_title_nl_activity">NLActivity</string>
+    <string name="activity_title_referrer_activity">ReferrerActivity</string>
+    <string name="activity_title_drawer_activity">DrawerActivity</string>
+    <string name="activity_title_package_size_activity">PackageSizeActivity</string>
+    <string name="activity_title_scan_activity">ScanActivity</string>
+    <string name="send_referrer">Send Referrer</string>
 </resources>

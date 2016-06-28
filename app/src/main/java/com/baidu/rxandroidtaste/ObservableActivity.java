@@ -72,7 +72,8 @@ public class ObservableActivity extends AppCompatActivity {
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(String s) {
-                        mTextView.setText(s);
+//                        mTextView.setText(s);
+                        mTextView.setText("Aplic. segd. plano em exec. tornam tlm. lento e afetam one seu desempenho.");
                     }
                 });
 

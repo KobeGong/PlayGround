@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.baidu.rxandroidtaste">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_PACKAGE_SIZE" />
+    <uses-permission
+        android:name="android.permission.INSTALL_PACKAGES"
+        tools:ignore="ProtectedPermissions" />
 
     <application
         android:allowBackup="true"
@@ -144,8 +149,50 @@
             </intent-filter>
         </service>
 
-        <activity android:name=".TransparentActivity"
+        <activity
+            android:name=".TransparentActivity"
             android:theme="@style/AppTheme.Transparent" />
+        <activity
+            android:name=".DrawerActivity"
+            android:label="@string/activity_title_drawer_activity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".ListDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ReferrerActivity"
+            android:label="@string/activity_title_referrer_activity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PackageSizeActivity"
+            android:label="@string/activity_title_package_size_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".scan.ScanActivity"
+            android:label="@string/activity_title_scan_activity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="com.baidu.activity.main" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
