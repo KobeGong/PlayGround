@@ -62,16 +62,7 @@ public class WifiView extends View {
         }
     }
 
-    public float getWifiRadius() {
-        return wifiRadius;
-    }
-
-    public void setWifiRadius(float wifiRadius) {
-        if (this.wifiRadius != wifiRadius) {
-            wifiArcRect.set(0F, 0F, wifiRadius, wifiRadius);
-            postInvalidateOnAnimation();
-        }
-    }
+    
 
     public void setWifiPower(int power) {
         if (this.wifiPower != power) {
