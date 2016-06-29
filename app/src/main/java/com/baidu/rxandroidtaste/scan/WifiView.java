@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 /**
@@ -58,9 +57,8 @@ public class WifiView extends View {
             centerX = halfWidth;
             centerY = halfHeight;
             outRingRadius = Math.min(width, height) / 2;
-            wifiRadius = outRingRadius;
+            wifiRadius = outRingRadius * 1.2f;
             wifiArcRect.set(0F, 0F, wifiRadius, wifiRadius);
-//            wifiArcRect.offset(halfWidth / 2, (halfHeight - halfWidth / 2) + outRingRadius / 4);
         }
     }
 
@@ -91,16 +89,15 @@ public class WifiView extends View {
         super.onDraw(canvas);
         float cx = centerX;
         float cy = centerY;
-        canvas.drawCircle(cx, cy, outRingRadius - STROKE_WIDTH / 2, outRingPaint);
-        float step = (outRingRadius - 20) / 3;
+//        canvas.drawCircle(cx, cy, outRingRadius - STROKE_WIDTH / 2, outRingPaint);
+        float step = (wifiRadius - 60) / 3;
         for (int i = wifiPower; i >= 1; i--) {
             canvas.save();
             int alpha = (int) ((5 - i + 1) * 0.2f * 255);
             wifiPaint.setAlpha(alpha);
-            Log.d("gonggaofeng", "wifiPower = " + i + ", alpha = " + alpha);
-            wifiRadius = step * i + 20;
-            wifiArcRect.set(0F, 0F, wifiRadius, wifiRadius);
-            canvas.translate(centerX - wifiArcRect.centerX(), centerY - wifiArcRect.centerY());
+            float wifiR = step * i + 60;
+            wifiArcRect.set(0F, 0F, wifiR, wifiR);
+            canvas.translate(centerX - wifiArcRect.centerX(), centerY - wifiArcRect.centerY() + wifiRadius / 4);
             canvas.drawArc(wifiArcRect, 235, 70, true, wifiPaint);
             canvas.restore();
         }

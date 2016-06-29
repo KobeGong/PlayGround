@@ -5,11 +5,28 @@
     android:layout_height="match_parent"
     android:background="#FF0E86FF"
     tools:context="com.baidu.rxandroidtaste.scan.ScanActivity">
-    <com.baidu.rxandroidtaste.scan.WifiView
-        android:id="@+id/wifiView"
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-    <com.baidu.rxandroidtaste.scan.SweepView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/bigRing"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:src="@drawable/big_ring"
+            android:layout_centerInParent="true"/>
+
+        <com.baidu.rxandroidtaste.scan.WifiView
+            android:id="@+id/wifiView"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_centerInParent="true" />
+
+        <com.baidu.rxandroidtaste.scan.SweepView
+            android:id="@+id/sweepView"
+            android:layout_width="240dp"
+            android:layout_height="240dp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 </RelativeLayout>

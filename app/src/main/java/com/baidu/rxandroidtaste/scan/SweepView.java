@@ -7,7 +7,6 @@ import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.SweepGradient;
-import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -18,12 +17,12 @@ public class SweepView extends View {
 
     public static final int STROKE_WIDTH = 80;
     private Paint outRingPaint;
-    private Paint wifiPaint;
+    private Paint ringPaint;
     private float centerX, centerY, outRingRadius;
     private RectF wifiArcRect;
     private float wifiRadius;
     private int wifiPower;
-    private SweepGradient sweepGradient;
+    private SweepGradient sweepGradient, ringSweepGradient;
     Matrix matrix = new Matrix();
 
     public SweepView(Context context) {
@@ -38,8 +37,21 @@ public class SweepView extends View {
         super(context, attrs, defStyleAttr);
         outRingPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
         outRingPaint.setColor(Color.WHITE);
-        sweepGradient = new SweepGradient(0.5f, 0.5f, Color.parseColor("#FFFFFFFF"), Color.parseColor("#00FFFFFF"));
+        outRingPaint.setStyle(Paint.Style.FILL);
+
+        ringPaint = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.DITHER_FLAG);
+        ringPaint.setColor(Color.WHITE);
+        ringPaint.setStyle(Paint.Style.STROKE);
+
+        sweepGradient = new SweepGradient(0.5f, 0.5f,
+                new int[]{Color.parseColor("#00FFFFFF"), Color.parseColor("#AAFFFFFF")},
+                new float[]{0.6f, 1f});
         outRingPaint.setShader(sweepGradient);
+        ringSweepGradient = new SweepGradient(0.5f, 0.5f,
+                new int[]{Color.parseColor("#00FFFFFF"), Color.parseColor("#FFFFFFFF")},
+                new float[]{0.6f, 1f});
+        ringPaint.setShader(ringSweepGradient);
+        ringPaint.setStrokeWidth(STROKE_WIDTH / 4);
         wifiArcRect = new RectF();
     }
 
@@ -57,11 +69,13 @@ public class SweepView extends View {
             wifiRadius = outRingRadius;
             wifiArcRect.set(0F, 0F, wifiRadius, wifiRadius);
 
-            matrix.mapRect(new RectF(left, top, right, bottom));
+            matrix.postScale(width, height);
             sweepGradient.setLocalMatrix(matrix);
+            ringSweepGradient.setLocalMatrix(matrix);
 //            wifiArcRect.offset(halfWidth / 2, (halfHeight - halfWidth / 2) + outRingRadius / 4);
         }
     }
+
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -69,5 +83,7 @@ public class SweepView extends View {
         float cx = centerX;
         float cy = centerY;
         canvas.drawCircle(cx, cy, outRingRadius - STROKE_WIDTH / 2, outRingPaint);
+        canvas.drawCircle(cx, cy, outRingRadius - STROKE_WIDTH * 5/ 8, ringPaint);
+
     }
 }
