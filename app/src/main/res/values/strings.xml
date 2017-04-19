@@ -14,5 +14,8 @@
     <string name="activity_title_drawer_activity">DrawerActivity</string>
     <string name="activity_title_package_size_activity">PackageSizeActivity</string>
     <string name="activity_title_scan_activity">ScanActivity</string>
+    <string name="activity_title_dagger_activity">DaggerActivity</string>
+    <string name="activity_title_uninstall_activity">UninstallActivity</string>
     <string name="send_referrer">Send Referrer</string>
+    <string name="input_package_name">input package name</string>
 </resources>

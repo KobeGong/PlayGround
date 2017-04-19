@@ -17,7 +17,8 @@ public class WifiView extends View {
     public static final int STROKE_WIDTH = 80;
     private Paint outRingPaint;
     private Paint wifiPaint;
-    private float centerX, centerY, outRingRadius;
+    private float centerX;
+    private float centerY;
     private RectF wifiArcRect;
     private float wifiRadius;
     private int wifiPower;
@@ -56,13 +57,11 @@ public class WifiView extends View {
             float halfHeight = height / 2;
             centerX = halfWidth;
             centerY = halfHeight;
-            outRingRadius = Math.min(width, height) / 2;
+            float outRingRadius = Math.min(width, height) / 2;
             wifiRadius = outRingRadius * 1.2f;
             wifiArcRect.set(0F, 0F, wifiRadius, wifiRadius);
         }
     }
-
-    
 
     public void setWifiPower(int power) {
         if (this.wifiPower != power) {
@@ -78,9 +77,6 @@ public class WifiView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float cx = centerX;
-        float cy = centerY;
-//        canvas.drawCircle(cx, cy, outRingRadius - STROKE_WIDTH / 2, outRingPaint);
         float step = (wifiRadius - 60) / 3;
         for (int i = wifiPower; i >= 1; i--) {
             canvas.save();

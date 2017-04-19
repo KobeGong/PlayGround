@@ -4,8 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.content.pm.Signature;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.AsyncTaskLoader;
@@ -20,12 +23,21 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.jakewharton.rxbinding.view.RxView;
+import com.jakewharton.rxbinding.widget.RxTextView;
+
+import java.math.BigInteger;
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnItemClick;
+import rx.functions.Action1;
+
+import static android.content.pm.PackageManager.GET_SIGNATURES;
+import static com.google.android.gms.internal.a.T;
 
 public class LaunchActivity extends AppCompatActivity implements
         LoaderManager.LoaderCallbacks<List<ResolveInfo>> {
@@ -43,8 +55,62 @@ public class LaunchActivity extends AppCompatActivity implements
         mAdapter = new ActivityAdapter(this);
         mListView.setAdapter(mAdapter);
         getSupportLoaderManager().initLoader(LOADER_ACTIVITIES, null, this);
-
         registerReceiver();
+
+        getSignTag();
+
+    }
+
+    public void getSignTag() {
+
+        try {
+            PackageInfo packageInfo = getPackageManager().getPackageInfo("com.duapps.antivirus", GET_SIGNATURES);
+            Signature[] signatures = packageInfo.signatures;
+            for (Signature signature : signatures) {
+                Log.d("gonggaofeng", "signature = " + signature.toCharsString());
+                Log.d("gonggaofeng", "--------");
+            }
+            if (signatures != null && signatures.length > 0) {
+                // Only check the first signature
+                String signatureTag;
+                String checksum = getMD5Checksum(signatures[0].toByteArray(), Character.MAX_RADIX);
+                Log.d("gonggaofeng", "checkSum = " + checksum);
+                if (checksum != null) {
+                    if ("1qiucpl9pw0ol4l4ae5pupuhn".equals(checksum)) {
+                        signatureTag = "r1";
+                    } else if ("3ya3kmvchr0sy572vwothpb3c".equals(checksum)) {
+                        signatureTag = "r2";
+                    } else if ("4xdm7oblwioop9e9sihzdiceo".equals(checksum)) {
+                        signatureTag = "d1";
+                    } else if ("6q2f72pbvsundumlbh8qo54ta".equals(checksum)) {
+                        signatureTag = "d2";
+                    } else {
+                        signatureTag = checksum.substring(0, 5);
+                    }
+                    Log.d("gonggaofeng", "signTag = " + signatureTag);
+                }
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+            Toast.makeText(this, "packageName not found", Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * @return May be null
+     */
+    public static String getMD5Checksum(byte[] data, int radix) {
+        String result = null;
+
+        try {
+            MessageDigest md5 = MessageDigest.getInstance("MD5");
+            md5.update(data);
+            BigInteger big = new BigInteger(md5.digest()).abs();
+            return big.toString(radix);  // radix: 36
+        } catch (Exception e) {
+        }
+
+        return result;
     }
 
     private void registerReceiver() {

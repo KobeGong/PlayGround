@@ -26,5 +26,9 @@
 -keepclasseswithmembernames class * {
     @butterknife.* <methods>;
 }
+-dontwarn okio.*
+-dontwarn rx.**
+-dontwarn com.google.android.gms.**
+-dontwarn com.facebook.ads.**
 
 

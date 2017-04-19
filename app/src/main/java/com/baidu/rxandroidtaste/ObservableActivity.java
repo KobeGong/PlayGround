@@ -1,7 +1,6 @@
 package com.baidu.rxandroidtaste;
 
 import android.app.SearchManager;
-import android.app.SearchableInfo;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -9,13 +8,12 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.os.Binder;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.TextView;
-
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -72,8 +70,7 @@ public class ObservableActivity extends AppCompatActivity {
                 .subscribe(new Action1<String>() {
                     @Override
                     public void call(String s) {
-//                        mTextView.setText(s);
-                        mTextView.setText("Aplic. segd. plano em exec. tornam tlm. lento e afetam one seu desempenho.");
+                        mTextView.setText(s);
                     }
                 });
 

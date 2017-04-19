@@ -39,24 +39,18 @@ public class ScanActivity extends AppCompatActivity {
                 ObjectAnimator wifiScaleY = ObjectAnimator.ofFloat(wifiView, "scaleY", 0F, 1F);
                 wifiScaleY.setDuration(1000L);
 
-                ObjectAnimator powerAnimator = ObjectAnimator.ofInt(wifiView, "wifiPower", 1, 4);
-                powerAnimator.setDuration(2000L);
-                powerAnimator.setRepeatCount(ObjectAnimator.INFINITE);
-                powerAnimator.setRepeatMode(ObjectAnimator.RESTART);
-
                 ObjectAnimator alphaAnimator = ObjectAnimator.ofFloat(sweepView, "alpha", 0F, 1F);
                 alphaAnimator.setDuration(1000L);
 
                 ObjectAnimator sweepAnimator = ObjectAnimator.ofFloat(sweepView, "rotation", 0, 360);
-                sweepAnimator.setDuration(2000L);
+                sweepAnimator.setDuration(1700L);
                 sweepAnimator.setInterpolator(new LinearInterpolator());
                 sweepAnimator.setRepeatCount(ObjectAnimator.INFINITE);
                 sweepAnimator.setRepeatMode(ObjectAnimator.RESTART);
 
                 AnimatorSet animatorSet = new AnimatorSet();
                 animatorSet.play(bigRingAlpha).with(wifiScaleX).with(wifiScaleY).before(alphaAnimator).before(sweepAnimator);
-                animatorSet.play(sweepAnimator).with(powerAnimator);
-//                .with(powerAnimator);
+                animatorSet.play(sweepAnimator);
                 animatorSet.start();
                 return true;
             }
