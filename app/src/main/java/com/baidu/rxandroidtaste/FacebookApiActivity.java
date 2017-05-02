@@ -1,6 +1,8 @@
 package com.baidu.rxandroidtaste;
 
+import android.app.FakeKeyguardManager;
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -27,7 +29,6 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-import bolts.AppLink;
 import bolts.AppLinks;
 
 import static com.baidu.rxandroidtaste.CommonUtils.dpToPx;
@@ -173,5 +174,21 @@ public class FacebookApiActivity extends AppCompatActivity {
         ImageView imgLogo;
         TextView tvTitle;
         TextView tvContent;
+    }
+
+    private static class FbContext extends ContextWrapper {
+        public FbContext(Context base) {
+            super(base);
+        }
+
+        @Override
+        public Object getSystemService(String name) {
+            if (name.equals(Context.KEYGUARD_SERVICE)) {
+                return new FakeKeyguardManager();
+            }
+            return super.getSystemService(name);
+        }
+
+
     }
 }
